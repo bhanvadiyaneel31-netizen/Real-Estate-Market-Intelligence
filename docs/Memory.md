@@ -19,13 +19,15 @@ Phase 3 — ETL / Feature Engineering
 - Phase 2 — Scraper (Ames Housing local sandbox server, web crawler with pagination, rate-limiting, and DB raw log storage, Click CLI command, mock unit tests)
 
 ## In Progress
-- (none)
+- Phase 3 — ETL / Feature Engineering (Cleaner, FeatureEngineer, featured_listings table, CLI integration, and unit tests)
 
 ## Next Steps
 - Implement `Cleaner` class to clean raw values (types coercion, missing entries, outliers)
-- Implement `FeatureEngineer` class (neighborhood encoding, price per sqft, text feature extraction)
-- Create versioned cleaned features database table
+- Implement `FeatureEngineer` class (neighborhood, price per sqft, text feature extraction, is_below_market_value)
+- Create versioned cleaned features database table `featured_listings`
 - Add the `cli clean` command to execute the ETL pipeline
+- Write and run unit tests for the ETL pipeline
+- **Critical Action Before Phase 4**: Re-run the full scrape (with limit high enough, e.g. 3000, to capture all ~2,930 Ames records) and re-run `cli clean` to generate a proper versioned feature set for training. The 50-row smoke test database is only for verifying code execution and is too noisy/small for neighborhood median target and model training.
 
 ## Key Decisions Log
 | Date | Decision | Reason |
@@ -35,9 +37,13 @@ Phase 3 — ETL / Feature Engineering
 | 2026-07-13 | Added uvicorn & httpx to requirements.txt | Uvicorn is required for serving FastAPI; HTTPX is required for testing. |
 | 2026-07-13 | Switched to Local Scraping Sandbox (Ames Housing) | Avoids legal/ToS risks associated with Zillow, Redfin, or Craigslist. Uses authoritative public-domain JSE data served locally as static HTML, preserving realistic pagination, rate-limiting, and DOM-parsing tests. |
 | 2026-07-13 | Switched local DB url to SQLite | Allows seamless local development without running local PostgreSQL servers. Dialect can be overridden via `.env`. |
+| 2026-07-14 | Target renamed to `is_below_market_value` | The Ames dataset has no days-on-market field. We use a "priced below neighborhood median" flag as a proxy target with no real timing validation. |
+| 2026-07-14 | City-wide median fallback for target | For neighborhoods with < 5 listings (e.g. Landmrk, GrnHill), the target is computed against the city-wide median price to avoid noisy/unreliable medians. |
+| 2026-07-14 | Defer neighborhood encoding to Phase 4 | Storing location as raw string rather than integer; model-specific encoding (e.g. one-hot for linear/KNN, target/label for trees) avoids false ordinal relationships in linear/distance models. |
+| 2026-07-14 | Exclude price/price_per_sqft from class features | Prevents data leakage since `is_below_market_value` is derived directly from price. |
 
 ## Known Issues / Blockers
-- The Ames Housing dataset has no "days on market" (DOM) field. The "will-sell-in-30-days" classification task in Architecture.md relies on this. We need to handle this in Phase 3 (ETL) — either by deriving a proxy target (e.g. using months/years sold or sale condition) or adjusting the classification task definition before model training in Phase 4.
+- The Ames Housing dataset has no "days on market" (DOM) field. The "will-sell-in-30-days" classification task in Architecture.md relies on this. We resolved this by adopting the `is_below_market_value` target proxy (see Key Decisions).
 
 ## Session Log
 ### Session 1 — 2026-07-13

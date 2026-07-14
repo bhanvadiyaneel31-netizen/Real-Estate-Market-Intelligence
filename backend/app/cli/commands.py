@@ -6,6 +6,7 @@ import click
 import uvicorn
 from app.db.session import SessionLocal, init_db
 from app.scraper.scraper import AmesSandboxScraper
+from app.etl.pipeline import ETLPipeline
 
 
 @click.group()
@@ -54,3 +55,25 @@ def scrape(limit: int, url: str, delay: float) -> None:
         click.echo(f"Error during scrape operation: {e}", err=True)
     finally:
         db.close()
+
+
+@cli.command("clean")
+@click.option("--version", default="1.0.0", help="Feature set version identifier.")
+def clean(version: str) -> None:
+    """
+    Run the ETL pipeline: clean raw listings and build features.
+    """
+    click.echo("Initializing database tables if not exists...")
+    init_db()
+
+    click.echo(f"Starting ETL pipeline for version {version}...")
+    db = SessionLocal()
+    try:
+        pipeline = ETLPipeline(db, feature_set_version=version)
+        saved_count = pipeline.run()
+        click.echo(f"ETL completed successfully. Cleaned & featured records saved to DB: {saved_count}")
+    except Exception as e:
+        click.echo(f"Error during clean operation: {e}", err=True)
+    finally:
+        db.close()
+

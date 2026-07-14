@@ -88,7 +88,7 @@ async def get_listing(pid: int):
     
     neighborhood = row.get("Neighborhood", "Unknown")
     price = row.get("SalePrice", 0)
-    area = row.get("GrLivArea", 0)
+    area = row.get("Gr Liv Area", 0)
     beds = row.get("Bedroom AbvGr", 0)
     baths = row.get("Full Bath", 0)
     
