@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Price Predictor | EstateAnalytics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#b6c4ff",
+                    "surface": "#FFFFFF",
+                    "surface-dim": "#dad9e1",
+                    "tertiary": "#4b1c00",
+                    "on-error-container": "#93000a",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#00164e",
+                    "text-primary": "#0F172A",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#341100",
+                    "primary-fixed-dim": "#b6c4ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#1a1b21",
+                    "tertiary-fixed": "#ffdbcb",
+                    "success": "#16A34A",
+                    "surface-tint": "#4059aa",
+                    "outline": "#757682",
+                    "primary-container": "#1e3a8a",
+                    "secondary-fixed": "#89f5e7",
+                    "on-primary-fixed-variant": "#264191",
+                    "text-secondary": "#64748B",
+                    "on-secondary-container": "#006f66",
+                    "border": "#E2E8F0",
+                    "surface-container": "#eeedf4",
+                    "surface-container-high": "#e9e7ef",
+                    "on-secondary-fixed": "#00201d",
+                    "on-error": "#ffffff",
+                    "background": "#faf8ff",
+                    "tertiary-fixed-dim": "#ffb691",
+                    "secondary": "#006a61",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed-dim": "#6bd8cb",
+                    "danger": "#DC2626",
+                    "on-primary": "#ffffff",
+                    "bg-base": "#F8FAFC",
+                    "primary": "#00236f",
+                    "inverse-on-surface": "#f1f0f7",
+                    "inverse-surface": "#2f3036",
+                    "surface-container-highest": "#e3e1e9",
+                    "warning": "#D97706",
+                    "on-primary-container": "#90a8ff",
+                    "on-surface-variant": "#444651",
+                    "surface-container-low": "#f4f3fa",
+                    "on-surface": "#1a1b21",
+                    "on-secondary-fixed-variant": "#005049",
+                    "primary-fixed": "#dce1ff",
+                    "outline-variant": "#c5c5d3",
+                    "on-tertiary-container": "#f39461",
+                    "surface-bright": "#faf8ff",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#86f2e4",
+                    "tertiary-container": "#6e2c00",
+                    "on-tertiary-fixed-variant": "#773205",
+                    "surface-variant": "#e3e1e9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "1rem",
+                    "gutter": "1rem",
+                    "card-padding-lg": "1.5rem",
+                    "margin-desktop": "1.5rem",
+                    "card-padding-sm": "1rem"
+            },
+            "fontFamily": {
+                    "body-md": ["inter"],
+                    "label-sm": ["inter"],
+                    "headline-md": ["inter"],
+                    "body-lg": ["inter"],
+                    "metric-sm": ["inter"],
+                    "metric-lg": ["inter"],
+                    "display": ["inter"],
+                    "headline-lg": ["inter"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "metric-sm": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "metric-lg": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "headline-lg": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-base text-text-primary min-h-screen">
+<!-- SideNavBar Anchor -->
+<aside class="h-screen w-64 fixed left-0 top-0 flex flex-col h-full py-6 px-4 bg-surface dark:bg-surface-container-low border-r border-border dark:border-outline-variant z-50">
+<div class="mb-10 px-2">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">EstateAnalytics</h1>
+<p class="font-body-md text-body-md text-text-secondary">Enterprise Suite</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded transition-colors duration-200 text-text-secondary dark:text-on-surface-variant hover:text-text-primary dark:hover:text-on-surface hover:bg-surface-container-low" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Market Overview</span>
+</a>
+<!-- Active Tab: Price Predictor -->
+<a class="flex items-center gap-3 px-3 py-2 rounded text-primary dark:text-primary-fixed font-bold border-r-4 border-primary dark:border-primary-fixed bg-surface-container-low dark:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined" data-icon="query_stats" style="font-variation-settings: 'FILL' 1;">query_stats</span>
+<span class="font-body-md text-body-md">Price Predictor</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded transition-colors duration-200 text-text-secondary dark:text-on-surface-variant hover:text-text-primary dark:hover:text-on-surface hover:bg-surface-container-low" href="#">
+<span class="material-symbols-outlined" data-icon="list_alt">list_alt</span>
+<span class="font-body-md text-body-md">Listing Explorer</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded transition-colors duration-200 text-text-secondary dark:text-on-surface-variant hover:text-text-primary dark:hover:text-on-surface hover:bg-surface-container-low" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-body-md text-body-md">Model Comparison</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-border pt-6 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded text-text-secondary hover:text-text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-text-secondary hover:text-text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="font-body-md text-body-md">Support</span>
+</a>
+<button class="w-full mt-4 bg-primary text-on-primary py-2.5 px-4 rounded font-body-md text-body-md font-semibold active:opacity-80 transition-all">
+                Export Report
+            </button>
+</div>
+</aside>
+<!-- TopAppBar Anchor -->
+<header class="w-full h-16 sticky top-0 flex items-center justify-between px-margin-desktop ml-64 bg-base dark:bg-background z-40">
+<h2 class="font-headline-lg text-headline-lg font-black text-primary dark:text-primary-fixed">Price Predictor</h2>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary scale-75">search</span>
+<input class="bg-surface border border-border rounded-full pl-10 pr-4 py-1.5 w-64 text-body-md focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Quick search..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-text-secondary hover:text-primary transition-colors">notifications</button>
+<div class="flex items-center gap-2 cursor-pointer group">
+<span class="material-symbols-outlined text-text-secondary group-hover:text-primary transition-colors">account_circle</span>
+<span class="font-body-md text-body-md text-text-primary hidden sm:inline">Admin User</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 p-margin-desktop">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Prediction Form Section (Bento Style) -->
+<section class="col-span-12 lg:col-span-7 space-y-gutter">
+<div class="bg-surface border border-border rounded-xl p-card-padding-lg shadow-sm">
+<div class="mb-6">
+<h3 class="font-headline-md text-headline-md text-text-primary">Property Specifications</h3>
+<p class="font-body-md text-body-md text-text-secondary">Input details for a high-precision ML valuation.</p>
+</div>
+<form class="grid grid-cols-4 gap-6">
+<div class="col-span-4">
+<label class="block font-label-sm text-label-sm text-text-primary mb-1.5">Address</label>
+<input class="w-full bg-base border border-border rounded px-4 py-2.5 text-body-md focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" placeholder="Enter full street address, city, state" type="text"/>
+</div>
+<div class="col-span-2">
+<label class="block font-label-sm text-label-sm text-text-primary mb-1.5">Living Area (Sq Ft)</label>
+<input class="w-full bg-base border border-border rounded px-4 py-2.5 text-body-md focus:ring-2 focus:ring-primary outline-none transition-all" placeholder="2,500" type="number"/>
+</div>
+<div class="col-span-2">
+<label class="block font-label-sm text-label-sm text-text-primary mb-1.5">Lot Size (Acres)</label>
+<input class="w-full bg-base border border-border rounded px-4 py-2.5 text-body-md focus:ring-2 focus:ring-primary outline-none transition-all" placeholder="0.25" type="text"/>
+</div>
+<div class="col-span-2">
+<label class="block font-label-sm text-label-sm text-text-primary mb-1.5">Bedrooms</label>
+<select class="w-full bg-base border border-border rounded px-4 py-2.5 text-body-md focus:ring-2 focus:ring-primary outline-none transition-all">
+<option>1</option>
+<option>2</option>
+<option selected="">3</option>
+<option>4</option>
+<option>5+</option>
+</select>
+</div>
+<div class="col-span-2">
+<label class="block font-label-sm text-label-sm text-text-primary mb-1.5">Bathrooms</label>
+<select class="w-full bg-base border border-border rounded px-4 py-2.5 text-body-md focus:ring-2 focus:ring-primary outline-none transition-all">
+<option>1</option>
+<option selected="">2</option>
+<option>2.5</option>
+<option>3</option>
+<option>4+</option>
+</select>
+</div>
+<div class="col-span-4 pt-4">
+<button class="w-full bg-primary-container text-on-primary py-4 rounded-lg font-headline-md text-headline-md font-bold hover:opacity-90 active:scale-[0.98] transition-all shadow-lg shadow-primary/10" type="button">
+                                    Predict Price
+                                </button>
+<p class="text-center mt-4 font-label-sm text-label-sm text-text-secondary">Powered by Model v4.22 Engine</p>
+</div>
+</form>
+</div>
+<!-- Comparison Section -->
+<div class="bg-surface border border-border rounded-xl p-card-padding-lg overflow-hidden">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-md text-headline-md text-text-primary">Comparison Index</h3>
+<span class="px-3 py-1 bg-secondary/10 text-secondary rounded-full font-label-sm text-label-sm">Updated 2m ago</span>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-base rounded border border-border/50">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded bg-primary/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="domain">domain</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold">Zip Code Median</p>
+<p class="font-label-sm text-label-sm text-text-secondary">90210, Beverly Hills</p>
+</div>
+</div>
+<p class="font-metric-lg text-metric-lg text-text-primary">$1.45M</p>
+</div>
+<div class="flex items-center justify-between p-4 bg-base rounded border border-border/50">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded bg-success/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-success" data-icon="trending_up">trending_up</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold">Price Delta</p>
+<p class="font-label-sm text-label-sm text-text-secondary">Predicted vs Local</p>
+</div>
+</div>
+<p class="font-metric-lg text-metric-lg text-success">+12.4%</p>
+</div>
+</div>
+</div>
+</section>
+<!-- AI Insights Section -->
+<section class="col-span-12 lg:col-span-5 space-y-gutter">
+<div class="relative rounded-xl overflow-hidden shadow-sm h-[400px] group border border-border">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A high-end, contemporary luxury home with sharp architectural lines, large glass floor-to-ceiling windows, and a warm interior glow during a golden hour sunset. The style is minimalist and ultra-modern, incorporating natural stone and dark steel elements. The lighting is soft and atmospheric, emphasizing premium real estate aesthetics in a lush green neighborhood." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAJlNBx8eXqZ79_L3R9eZacI-8Xj4KvXfeJ63W9_HH2vtokDm5DpZ5APfA6KIhGckt6KApy6osLq7tFIgqxxEn-a-PR9HP8kHw7X4JQw1ghcJyol2hBLh4iokb3EGeYRgkDc1t363i-FBgUprFo7AAp_gBlpIJtBqio88_yJ1TdL6EUe0LALuIL-oLKOV17qg-o1aWVhWwkq3KTTD4gnqY5QXHLawLef85PN8ECJZ2Mg57S90U28Y78w421UFQ4CCSvoVvU1tHW0Go')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-text-primary via-transparent to-transparent opacity-70"></div>
+<div class="absolute bottom-0 left-0 right-0 p-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-primary text-on-primary rounded-full mb-4">
+<span class="material-symbols-outlined text-[14px]" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">AI Insight</span>
+</div>
+<h4 class="text-white font-display text-display leading-tight mb-2">Prime Potential</h4>
+<p class="text-white/80 font-body-lg text-body-lg">This property is projected to appreciate 15% faster than the local average due to proximity to the new transit hub.</p>
+</div>
+</div>
+<!-- Local Trends Section -->
+<div class="bg-surface border border-border rounded-xl p-card-padding-lg">
+<h3 class="font-headline-md text-headline-md text-text-primary mb-6">Local Trends</h3>
+<div class="space-y-6">
+<!-- Trend Item 1 -->
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-body-md text-body-md text-text-secondary">Inventory Level</span>
+<span class="font-metric-sm text-metric-sm text-danger font-bold">Critical Low</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-danger h-full rounded-full" style="width: 88%"></div>
+</div>
+</div>
+<!-- Trend Item 2 -->
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-body-md text-body-md text-text-secondary">Days on Market</span>
+<span class="font-metric-sm text-metric-sm text-text-primary font-bold">14 Days</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 30%"></div>
+</div>
+</div>
+<!-- Trend Item 3 -->
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-body-md text-body-md text-text-secondary">Buyer Sentiment</span>
+<span class="font-metric-sm text-metric-sm text-success font-bold">Strong Buy</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-success h-full rounded-full" style="width: 75%"></div>
+</div>
+</div>
+</div>
+<div class="mt-8 grid grid-cols-2 gap-4">
+<div class="p-4 bg-base rounded border border-border">
+<p class="font-label-sm text-label-sm text-text-secondary uppercase mb-1">Mortgage Rate</p>
+<p class="font-metric-lg text-metric-lg text-text-primary">6.4%</p>
+</div>
+<div class="p-4 bg-base rounded border border-border">
+<p class="font-label-sm text-label-sm text-text-secondary uppercase mb-1">Tax Rate</p>
+<p class="font-metric-lg text-metric-lg text-text-primary">1.1%</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Contextual Insight Panel -->
+<footer class="mt-12 p-8 glass-card rounded-2xl flex flex-col md:flex-row items-center gap-8">
+<div class="flex-shrink-0 w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+</div>
+<div class="flex-1 text-center md:text-left">
+<h5 class="font-headline-md text-headline-md text-text-primary mb-1">Optimization Strategy</h5>
+<p class="font-body-lg text-body-lg text-text-secondary">Renovating the primary bathroom with high-end fixtures could increase the predicted value by an estimated <span class="text-success font-bold">$12,400 - $18,000</span> based on historical data for this area.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-6 py-3 border border-border text-text-primary font-body-md text-body-md font-semibold rounded hover:bg-base transition-colors">View Details</button>
+</div>
+</footer>
+</div>
+</main>
+<script>
+        // Micro-interaction for the Predict button
+        const predictBtn = document.querySelector('button[type="button"]');
+        if (predictBtn) {
+            predictBtn.addEventListener('click', function() {
+                const originalText = this.innerText;
+                this.innerHTML = '<span class="flex items-center justify-center gap-2"><svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Analyzing Markets...</span>';
+                this.classList.add('pointer-events-none', 'opacity-80');
+                
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.classList.remove('pointer-events-none', 'opacity-80');
+                    alert('ML Engine processed inputs successfully. New prediction: $1,245,000');
+                }, 1500);
+            });
+        }
+    </script>
+</body></html>

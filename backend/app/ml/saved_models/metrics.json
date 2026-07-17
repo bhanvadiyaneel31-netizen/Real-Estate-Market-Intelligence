@@ -1,0 +1,164 @@
+{
+    "1.0.0": {
+        "linear_regression": {
+            "metrics": {
+                "rmse": 35522.00041932698,
+                "r2": 0.7849202236213708
+            },
+            "trained_at": "2026-07-14T13:39:19.974842",
+            "feature_set_version": "1.0.0"
+        },
+        "ridge_regression": {
+            "metrics": {
+                "rmse": 35609.37920335563,
+                "r2": 0.7838607943331177
+            },
+            "trained_at": "2026-07-14T13:39:19.990442",
+            "feature_set_version": "1.0.0"
+        },
+        "lasso_regression": {
+            "metrics": {
+                "rmse": 35526.125058636644,
+                "r2": 0.7848702727180282
+            },
+            "trained_at": "2026-07-14T13:39:20.082426",
+            "feature_set_version": "1.0.0"
+        },
+        "random_forest_regression": {
+            "metrics": {
+                "rmse": 33178.7452421321,
+                "r2": 0.8123603294622883
+            },
+            "trained_at": "2026-07-14T13:39:20.374161",
+            "feature_set_version": "1.0.0"
+        },
+        "xgboost_regression": {
+            "metrics": {
+                "rmse": 34197.47720658135,
+                "r2": 0.8006607207511429
+            },
+            "trained_at": "2026-07-14T13:39:20.681108",
+            "feature_set_version": "1.0.0"
+        },
+        "decision_tree_regression": {
+            "metrics": {
+                "rmse": 46436.11186502744,
+                "r2": 0.632449986001972
+            },
+            "trained_at": "2026-07-14T13:39:20.699862",
+            "feature_set_version": "1.0.0"
+        },
+        "logistic_classification": {
+            "metrics": {
+                "accuracy": 0.7487179487179487,
+                "f1": 0.7545909849749582
+            },
+            "trained_at": "2026-07-14T13:39:20.727773",
+            "feature_set_version": "1.0.0"
+        },
+        "svm_classification": {
+            "metrics": {
+                "accuracy": 0.7521367521367521,
+                "f1_weighted": 0.751187106261072
+            },
+            "trained_at": "2026-07-14T13:39:21.191999",
+            "feature_set_version": "1.0.0"
+        },
+        "naive_bayes_text": {
+            "metrics": {
+                "accuracy": 0.611965811965812,
+                "f1": 0.5895117540687161
+            },
+            "trained_at": "2026-07-14T13:39:21.292929",
+            "feature_set_version": "1.0.0"
+        },
+        "knn_retrieval": {
+            "metrics": {
+                "mean_neighbor_distance": 0.3940434542746742
+            },
+            "trained_at": "2026-07-14T13:39:21.328961",
+            "feature_set_version": "1.0.0"
+        }
+    },
+    "1.0.1": {
+        "linear_regression": {
+            "metrics": {
+                "rmse": 35522.00041932698,
+                "r2": 0.7849202236213708
+            },
+            "trained_at": "2026-07-17T13:20:12.737376",
+            "feature_set_version": "1.0.1"
+        },
+        "ridge_regression": {
+            "metrics": {
+                "rmse": 35609.37920335563,
+                "r2": 0.7838607943331177
+            },
+            "trained_at": "2026-07-17T13:20:12.747110",
+            "feature_set_version": "1.0.1"
+        },
+        "lasso_regression": {
+            "metrics": {
+                "rmse": 35526.125058636644,
+                "r2": 0.7848702727180282
+            },
+            "trained_at": "2026-07-17T13:20:12.807170",
+            "feature_set_version": "1.0.1"
+        },
+        "random_forest_regression": {
+            "metrics": {
+                "rmse": 33178.7452421321,
+                "r2": 0.8123603294622883
+            },
+            "trained_at": "2026-07-17T13:20:12.996626",
+            "feature_set_version": "1.0.1"
+        },
+        "xgboost_regression": {
+            "metrics": {
+                "rmse": 34197.47720658135,
+                "r2": 0.8006607207511429
+            },
+            "trained_at": "2026-07-17T13:20:13.196797",
+            "feature_set_version": "1.0.1"
+        },
+        "decision_tree_regression": {
+            "metrics": {
+                "rmse": 46436.11186502744,
+                "r2": 0.632449986001972
+            },
+            "trained_at": "2026-07-17T13:20:13.207732",
+            "feature_set_version": "1.0.1"
+        },
+        "logistic_classification": {
+            "metrics": {
+                "accuracy": 0.7487179487179487,
+                "f1": 0.7545909849749582
+            },
+            "trained_at": "2026-07-17T13:20:13.225186",
+            "feature_set_version": "1.0.1"
+        },
+        "svm_classification": {
+            "metrics": {
+                "accuracy": 0.7521367521367521,
+                "f1_weighted": 0.751187106261072
+            },
+            "trained_at": "2026-07-17T13:20:13.468580",
+            "feature_set_version": "1.0.1"
+        },
+        "naive_bayes_text": {
+            "metrics": {
+                "accuracy": 0.611965811965812,
+                "f1": 0.5895117540687161
+            },
+            "trained_at": "2026-07-17T13:20:13.521895",
+            "feature_set_version": "1.0.1"
+        },
+        "knn_retrieval": {
+            "metrics": {
+                "mean_neighbor_distance": 0.3940434542746742
+            },
+            "trained_at": "2026-07-17T13:20:13.540745",
+            "feature_set_version": "1.0.1"
+        }
+    }
+}

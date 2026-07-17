@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EstateAnalytics | San Francisco Market Overview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#b6c4ff",
+                    "surface": "#FFFFFF",
+                    "surface-dim": "#dad9e1",
+                    "tertiary": "#4b1c00",
+                    "on-error-container": "#93000a",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#00164e",
+                    "text-primary": "#0F172A",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#341100",
+                    "primary-fixed-dim": "#b6c4ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#1a1b21",
+                    "tertiary-fixed": "#ffdbcb",
+                    "success": "#16A34A",
+                    "surface-tint": "#4059aa",
+                    "outline": "#757682",
+                    "primary-container": "#1e3a8a",
+                    "secondary-fixed": "#89f5e7",
+                    "on-primary-fixed-variant": "#264191",
+                    "text-secondary": "#64748B",
+                    "on-secondary-container": "#006f66",
+                    "border": "#E2E8F0",
+                    "surface-container": "#eeedf4",
+                    "surface-container-high": "#e9e7ef",
+                    "on-secondary-fixed": "#00201d",
+                    "on-error": "#ffffff",
+                    "background": "#faf8ff",
+                    "tertiary-fixed-dim": "#ffb691",
+                    "secondary": "#006a61",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed-dim": "#6bd8cb",
+                    "danger": "#DC2626",
+                    "on-primary": "#ffffff",
+                    "bg-base": "#F8FAFC",
+                    "primary": "#00236f",
+                    "inverse-on-surface": "#f1f0f7",
+                    "inverse-surface": "#2f3036",
+                    "surface-container-highest": "#e3e1e9",
+                    "warning": "#D97706",
+                    "on-primary-container": "#90a8ff",
+                    "on-surface-variant": "#444651",
+                    "surface-container-low": "#f4f3fa",
+                    "on-surface": "#1a1b21",
+                    "on-secondary-fixed-variant": "#005049",
+                    "primary-fixed": "#dce1ff",
+                    "outline-variant": "#c5c5d3",
+                    "on-tertiary-container": "#f39461",
+                    "surface-bright": "#faf8ff",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#86f2e4",
+                    "tertiary-container": "#6e2c00",
+                    "on-tertiary-fixed-variant": "#773205",
+                    "surface-variant": "#e3e1e9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "1rem",
+                    "gutter": "1rem",
+                    "card-padding-lg": "1.5rem",
+                    "margin-desktop": "1.5rem",
+                    "card-padding-sm": "1rem"
+            },
+            "fontFamily": {
+                    "body-md": ["inter"],
+                    "label-sm": ["inter"],
+                    "headline-md": ["inter"],
+                    "body-lg": ["inter"],
+                    "metric-sm": ["inter"],
+                    "metric-lg": ["inter"],
+                    "display": ["inter"],
+                    "headline-lg": ["inter"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "metric-sm": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "metric-lg": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "headline-lg": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .chart-container { position: relative; height: 350px; width: 100%; }
+        .glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); }
+    </style>
+</head>
+<body class="bg-bg-base text-text-primary min-h-screen">
+<!-- SideNavBar Anchor -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface dark:bg-surface-container-low border-r border-border dark:border-outline-variant flex flex-col py-6 px-4 z-50">
+<div class="mb-10 px-2">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">EstateAnalytics</h1>
+<p class="text-xs text-text-secondary uppercase tracking-widest mt-1">Enterprise Suite</p>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Active: Market Overview -->
+<a class="flex items-center gap-3 px-3 py-3 rounded text-primary dark:text-primary-fixed font-bold border-r-4 border-primary dark:border-primary-fixed bg-surface-container-low dark:bg-surface-container-high transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Market Overview</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded text-text-secondary dark:text-on-surface-variant hover:text-text-primary dark:hover:text-on-surface hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">query_stats</span>
+<span class="font-body-md text-body-md">Price Predictor</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded text-text-secondary dark:text-on-surface-variant hover:text-text-primary dark:hover:text-on-surface hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">list_alt</span>
+<span class="font-body-md text-body-md">Listing Explorer</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded text-text-secondary dark:text-on-surface-variant hover:text-text-primary dark:hover:text-on-surface hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md text-body-md">Model Comparison</span>
+</a>
+</nav>
+<div class="mt-auto space-y-1 border-t border-border pt-6">
+<button class="w-full mb-6 py-2.5 px-4 bg-primary text-white font-bold rounded hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">download</span>
+<span>Export Report</span>
+</button>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-text-secondary dark:text-on-surface-variant hover:text-text-primary transition-colors cursor-pointer" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-text-secondary dark:text-on-surface-variant hover:text-text-primary transition-colors cursor-pointer" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-body-md text-body-md">Support</span>
+</a>
+<div class="mt-6 flex items-center gap-3 px-2">
+<img class="w-10 h-10 rounded-full border border-border object-cover" data-alt="A professional headshot of a female real estate analyst, dressed in business casual attire with a clean, modern studio background. The lighting is soft and professional, emphasizing a friendly and authoritative persona consistent with a high-end financial dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAY7dZ-4G0T4JsofVN6VE2hMv_2f4Y8pHS8dQx-6rvYeJ3Jylbif4R77urKg5i_unowyfxJYTndRPErHPmmRJOwVjwBJx_ykqfCeqzjqv8_axb7bTewFm2KKfbTyaOm64Vz9zbNimTGKf0x77oNOnp9KNE-0Dol8mJmQMwSmSleTh-49Q1YwPqsGeXdzOTPJzMzQlTuz0yNXTy84em73wZgxDHljFVtFxOiIg6Rw58G0d2pIxK38wZUDqSww-wFtDL_iwje0LEeaQ"/>
+<div class="overflow-hidden">
+<p class="text-sm font-bold truncate">Alex Sterling</p>
+<p class="text-xs text-text-secondary">Senior Advisor</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen">
+<!-- TopAppBar Anchor -->
+<header class="w-full h-16 sticky top-0 bg-base dark:bg-background flex items-center justify-between px-margin-desktop z-40">
+<h2 class="font-headline-lg text-headline-lg font-black text-primary dark:text-primary-fixed">EstateAnalytics Dashboard</h2>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary text-sm">search</span>
+<input class="bg-surface-container-low border-none rounded-full py-1.5 pl-10 pr-4 text-sm focus:ring-1 focus:ring-primary w-64" placeholder="Search markets, zip codes..." type="text"/>
+</div>
+<div class="flex items-center gap-4 text-text-secondary">
+<button class="hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="hover:text-primary transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="px-margin-desktop py-8">
+<!-- Hero Header -->
+<div class="flex items-end justify-between mb-8">
+<div>
+<div class="flex items-center gap-2 text-text-secondary mb-1">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span class="text-xs font-medium uppercase tracking-widest">Western Region • California</span>
+</div>
+<h1 class="font-display text-display text-text-primary tracking-tight">San Francisco Market</h1>
+</div>
+<div class="flex gap-3">
+<div class="px-4 py-2 bg-surface border border-border rounded-lg flex items-center gap-2">
+<span class="text-xs font-bold text-text-secondary">RANGE:</span>
+<select class="text-sm border-none bg-transparent font-bold p-0 focus:ring-0">
+<option>Last 6 Months</option>
+<option>Year to Date</option>
+<option>Custom</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Metric Cards Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-8">
+<!-- Median Price -->
+<div class="bg-surface border border-border p-card-padding-lg rounded-xl shadow-sm hover:border-primary/20 transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-primary-container/10 p-2 rounded">
+<span class="material-symbols-outlined text-primary">payments</span>
+</div>
+<span class="text-success flex items-center text-xs font-bold bg-success/10 px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-xs mr-1">trending_up</span>
+                            +4.2%
+                        </span>
+</div>
+<p class="text-text-secondary font-label-sm text-label-sm uppercase mb-1">Median Price</p>
+<h3 class="font-metric-lg text-metric-lg text-text-primary">$1.42M</h3>
+<p class="text-[11px] text-text-secondary mt-2">Historical high for Q3 cycle</p>
+</div>
+<!-- Avg DOM -->
+<div class="bg-surface border border-border p-card-padding-lg rounded-xl shadow-sm hover:border-primary/20 transition-all">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-secondary-container/10 p-2 rounded">
+<span class="material-symbols-outlined text-secondary">calendar_today</span>
+</div>
+<span class="text-text-secondary flex items-center text-xs font-bold bg-surface-container px-2 py-0.5 rounded">
+                            Stable
+                        </span>
+</div>
+<p class="text-text-secondary font-label-sm text-label-sm uppercase mb-1">Avg DOM</p>
+<h3 class="font-metric-lg text-metric-lg text-text-primary">24 days</h3>
+<p class="text-[11px] text-text-secondary mt-2">3 days faster than regional average</p>
+</div>
+<!-- Inventory -->
+<div class="bg-surface border border-border p-card-padding-lg rounded-xl shadow-sm hover:border-primary/20 transition-all">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-tertiary-container/10 p-2 rounded">
+<span class="material-symbols-outlined text-tertiary" style="color: #6e2c00;">storefront</span>
+</div>
+<span class="text-danger flex items-center text-xs font-bold bg-danger/10 px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-xs mr-1">trending_down</span>
+                            -12%
+                        </span>
+</div>
+<p class="text-text-secondary font-label-sm text-label-sm uppercase mb-1">Inventory</p>
+<h3 class="font-metric-lg text-metric-lg text-text-primary">842</h3>
+<p class="text-[11px] text-text-secondary mt-2">Active listings currently available</p>
+</div>
+</div>
+<!-- Main Charts & Insights Row -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Price Trends Chart -->
+<div class="lg:col-span-2 bg-surface border border-border rounded-xl p-card-padding-lg shadow-sm">
+<div class="flex justify-between items-center mb-8">
+<h4 class="font-headline-md text-headline-md">Price Trends</h4>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="text-xs font-bold text-text-secondary">Current Year</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-slate-200"></span>
+<span class="text-xs font-bold text-text-secondary">Previous Year</span>
+</div>
+</div>
+</div>
+<div class="chart-container flex items-end justify-between px-2 pt-4">
+<!-- Simplified Visual Representation of a Line Chart -->
+<div class="flex-1 flex flex-col items-center group relative">
+<div class="w-full bg-slate-50 h-64 rounded-t-sm flex items-end justify-center pb-2 relative overflow-hidden">
+<div class="absolute bottom-1/2 left-0 w-full h-[2px] bg-slate-200"></div>
+<div class="w-2 h-2 rounded-full bg-primary absolute bottom-[55%] z-10 ring-4 ring-white"></div>
+<div class="w-full h-[45%] bg-primary/5 absolute bottom-0 border-t-2 border-primary"></div>
+</div>
+<p class="text-xs font-bold text-text-secondary mt-3">APR</p>
+</div>
+<div class="flex-1 flex flex-col items-center group relative">
+<div class="w-full bg-slate-50 h-64 flex items-end justify-center pb-2 relative overflow-hidden">
+<div class="absolute bottom-[52%] left-0 w-full h-[2px] bg-slate-200"></div>
+<div class="w-2 h-2 rounded-full bg-primary absolute bottom-[58%] z-10 ring-4 ring-white"></div>
+<div class="w-full h-[48%] bg-primary/5 absolute bottom-0 border-t-2 border-primary"></div>
+</div>
+<p class="text-xs font-bold text-text-secondary mt-3">MAY</p>
+</div>
+<div class="flex-1 flex flex-col items-center group relative">
+<div class="w-full bg-slate-50 h-64 flex items-end justify-center pb-2 relative overflow-hidden">
+<div class="absolute bottom-[58%] left-0 w-full h-[2px] bg-slate-200"></div>
+<div class="w-2 h-2 rounded-full bg-primary absolute bottom-[65%] z-10 ring-4 ring-white"></div>
+<div class="w-full h-[55%] bg-primary/5 absolute bottom-0 border-t-2 border-primary"></div>
+</div>
+<p class="text-xs font-bold text-text-secondary mt-3">JUN</p>
+</div>
+<div class="flex-1 flex flex-col items-center group relative">
+<div class="w-full bg-slate-50 h-64 flex items-end justify-center pb-2 relative overflow-hidden">
+<div class="absolute bottom-[65%] left-0 w-full h-[2px] bg-slate-200"></div>
+<div class="w-2 h-2 rounded-full bg-primary absolute bottom-[72%] z-10 ring-4 ring-white"></div>
+<div class="w-full h-[62%] bg-primary/5 absolute bottom-0 border-t-2 border-primary"></div>
+</div>
+<p class="text-xs font-bold text-text-secondary mt-3">JUL</p>
+</div>
+<div class="flex-1 flex flex-col items-center group relative">
+<div class="w-full bg-slate-50 h-64 flex items-end justify-center pb-2 relative overflow-hidden">
+<div class="absolute bottom-[62%] left-0 w-full h-[2px] bg-slate-200"></div>
+<div class="w-2 h-2 rounded-full bg-primary absolute bottom-[78%] z-10 ring-4 ring-white"></div>
+<div class="w-full h-[68%] bg-primary/5 absolute bottom-0 border-t-2 border-primary"></div>
+</div>
+<p class="text-xs font-bold text-text-secondary mt-3">AUG</p>
+</div>
+<div class="flex-1 flex flex-col items-center group relative">
+<div class="w-full bg-slate-50 h-64 rounded-t-sm flex items-end justify-center pb-2 relative overflow-hidden">
+<div class="absolute bottom-[68%] left-0 w-full h-[2px] bg-slate-200"></div>
+<div class="w-2 h-2 rounded-full bg-primary absolute bottom-[85%] z-10 ring-4 ring-white"></div>
+<div class="w-full h-[75%] bg-primary/5 absolute bottom-0 border-t-2 border-primary"></div>
+</div>
+<p class="text-xs font-bold text-text-secondary mt-3">SEP</p>
+</div>
+</div>
+</div>
+<!-- Agent Intelligence Insight Card -->
+<div class="lg:col-span-1 flex flex-col gap-gutter">
+<div class="bg-primary text-white rounded-xl p-card-padding-lg shadow-lg relative overflow-hidden flex-1 flex flex-col">
+<!-- Abstract Background Decoration -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16"></div>
+<div class="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full -ml-12 -mb-12"></div>
+<div class="relative z-10 flex-1">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-on-primary-container">psychology</span>
+<span class="text-xs font-bold tracking-widest uppercase">Agent Intelligence</span>
+</div>
+<h5 class="text-xl font-bold mb-4 leading-tight">Supply crunch expected to push Q4 pricing higher.</h5>
+<p class="text-sm text-white/80 leading-relaxed mb-6">
+                                SF inventory levels have reached a 3-year seasonal low. Predictive modeling suggests a 2.4% price appreciation in District 5 and 7 by year-end due to low absorption rates.
+                            </p>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3 text-xs">
+<span class="material-symbols-outlined text-sm text-on-primary-container">check_circle</span>
+<span>Focus on Luxury Condos in SoMa</span>
+</li>
+<li class="flex items-center gap-3 text-xs">
+<span class="material-symbols-outlined text-sm text-on-primary-container">check_circle</span>
+<span>Interest rates stabilized at 6.4%</span>
+</li>
+</ul>
+</div>
+<button class="relative z-10 w-full py-3 bg-white text-primary font-bold rounded-lg hover:bg-opacity-90 transition-all flex items-center justify-center gap-2">
+<span>Read Deep Dive</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<!-- Neighborhood Snapshot -->
+<div class="bg-surface border border-border rounded-xl p-card-padding-lg shadow-sm">
+<h6 class="text-xs font-bold text-text-secondary uppercase tracking-widest mb-4">Hot Neighborhoods</h6>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<div>
+<p class="text-sm font-bold">Noe Valley</p>
+<p class="text-[11px] text-text-secondary">Low Volatility</p>
+</div>
+<span class="text-success text-xs font-bold">+5.1%</span>
+</div>
+<div class="flex justify-between items-center">
+<div>
+<p class="text-sm font-bold">The Richmond</p>
+<p class="text-[11px] text-text-secondary">High Demand</p>
+</div>
+<span class="text-success text-xs font-bold">+3.8%</span>
+</div>
+<div class="flex justify-between items-center">
+<div>
+<p class="text-sm font-bold">Pacific Heights</p>
+<p class="text-[11px] text-text-secondary">Luxury Core</p>
+</div>
+<span class="text-text-primary text-xs font-bold">+1.2%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer-style summary -->
+<div class="mt-8 border-t border-border pt-6 flex justify-between items-center text-[11px] text-text-secondary uppercase font-medium tracking-widest">
+<p>Last Data Refresh: 10/24/2023 09:42 AM PST</p>
+<div class="flex gap-6">
+<a class="hover:text-primary transition-colors" href="#">Data Methodology</a>
+<a class="hover:text-primary transition-colors" href="#">Regional Benchmarks</a>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple micro-interaction for chart bars
+        document.querySelectorAll('.group').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                const bar = el.querySelector('.bg-primary\\/5');
+                if (bar) bar.style.backgroundColor = 'rgba(0, 35, 111, 0.15)';
+            });
+            el.addEventListener('mouseleave', () => {
+                const bar = el.querySelector('.bg-primary\\/5');
+                if (bar) bar.style.backgroundColor = 'rgba(0, 35, 111, 0.05)';
+            });
+        });
+    </script>
+</body></html>

@@ -17,6 +17,12 @@ class Settings(BaseSettings):
     host: str = "127.0.0.1"
     port: int = 8000
 
+    # Scheduler and crawler configurations
+    scheduler_enabled: bool = False
+    scheduler_interval_hours: int = 24
+    sandbox_url: str = "http://127.0.0.1:8001"
+
+
     # Locate the .env file in the backend/ directory relative to this config file.
     model_config = SettingsConfigDict(
         env_file=os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), ".env"),

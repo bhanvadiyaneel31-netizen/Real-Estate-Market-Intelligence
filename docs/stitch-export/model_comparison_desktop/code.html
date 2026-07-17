@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Model Comparison | EstateAnalytics</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#b6c4ff",
+                    "surface": "#FFFFFF",
+                    "surface-dim": "#dad9e1",
+                    "tertiary": "#4b1c00",
+                    "on-error-container": "#93000a",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#00164e",
+                    "text-primary": "#0F172A",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#341100",
+                    "primary-fixed-dim": "#b6c4ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#1a1b21",
+                    "tertiary-fixed": "#ffdbcb",
+                    "success": "#16A34A",
+                    "surface-tint": "#4059aa",
+                    "outline": "#757682",
+                    "primary-container": "#1e3a8a",
+                    "secondary-fixed": "#89f5e7",
+                    "on-primary-fixed-variant": "#264191",
+                    "text-secondary": "#64748B",
+                    "on-secondary-container": "#006f66",
+                    "border": "#E2E8F0",
+                    "surface-container": "#eeedf4",
+                    "surface-container-high": "#e9e7ef",
+                    "on-secondary-fixed": "#00201d",
+                    "on-error": "#ffffff",
+                    "background": "#faf8ff",
+                    "tertiary-fixed-dim": "#ffb691",
+                    "secondary": "#006a61",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed-dim": "#6bd8cb",
+                    "danger": "#DC2626",
+                    "on-primary": "#ffffff",
+                    "bg-base": "#F8FAFC",
+                    "primary": "#00236f",
+                    "inverse-on-surface": "#f1f0f7",
+                    "inverse-surface": "#2f3036",
+                    "surface-container-highest": "#e3e1e9",
+                    "warning": "#D97706",
+                    "on-primary-container": "#90a8ff",
+                    "on-surface-variant": "#444651",
+                    "surface-container-low": "#f4f3fa",
+                    "on-surface": "#1a1b21",
+                    "on-secondary-fixed-variant": "#005049",
+                    "primary-fixed": "#dce1ff",
+                    "outline-variant": "#c5c5d3",
+                    "on-tertiary-container": "#f39461",
+                    "surface-bright": "#faf8ff",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#86f2e4",
+                    "tertiary-container": "#6e2c00",
+                    "on-tertiary-fixed-variant": "#773205",
+                    "surface-variant": "#e3e1e9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "1rem",
+                    "gutter": "1rem",
+                    "card-padding-lg": "1.5rem",
+                    "margin-desktop": "1.5rem",
+                    "card-padding-sm": "1rem"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "metric-sm": ["Inter"],
+                    "metric-lg": ["Inter"],
+                    "display": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "metric-sm": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "metric-lg": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "headline-lg": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .chart-bar { transition: height 1s ease-out; }
+        .progress-fill { transition: width 1s ease-in-out; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="bg-bg-base text-text-primary">
+<!-- SideNavBar Shell -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface dark:bg-surface-container-low border-r border-border dark:border-outline-variant flex flex-col py-6 px-4 z-50">
+<div class="mb-8 px-2">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">EstateAnalytics</h1>
+<p class="font-body-md text-body-md text-text-secondary">Enterprise Suite</p>
+</div>
+<nav class="flex-1 space-y-1">
+<div class="flex items-center gap-3 px-3 py-2 cursor-pointer active:opacity-80 transition-colors duration-200 text-text-secondary dark:text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Market Overview</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 cursor-pointer active:opacity-80 transition-colors duration-200 text-text-secondary dark:text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
+<span class="font-body-md text-body-md">Price Predictor</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 cursor-pointer active:opacity-80 transition-colors duration-200 text-text-secondary dark:text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high">
+<span class="material-symbols-outlined" data-icon="list_alt">list_alt</span>
+<span class="font-body-md text-body-md">Listing Explorer</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 cursor-pointer active:opacity-80 transition-colors duration-200 text-primary dark:text-primary-fixed font-bold border-r-4 border-primary dark:border-primary-fixed bg-surface-container-low dark:bg-surface-container-high">
+<span class="material-symbols-outlined" data-icon="analytics" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-body-md text-body-md">Model Comparison</span>
+</div>
+</nav>
+<div class="pt-6 border-t border-border mt-auto space-y-1">
+<div class="flex items-center gap-3 px-3 py-2 cursor-pointer text-text-secondary hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 cursor-pointer text-text-secondary hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="font-body-md text-body-md">Support</span>
+</div>
+<button class="w-full mt-4 bg-primary text-on-primary py-2 px-4 rounded font-body-md text-body-md font-bold hover:opacity-90 transition-opacity">
+                Export Report
+            </button>
+</div>
+</aside>
+<!-- TopAppBar Shell -->
+<header class="ml-64 w-[calc(100%-16rem)] h-16 sticky top-0 bg-base dark:bg-background z-40 flex items-center justify-between px-margin-desktop">
+<div class="flex items-center gap-4">
+<span class="font-headline-lg text-headline-lg font-black text-primary dark:text-primary-fixed">EstateAnalytics Dashboard</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative">
+<input class="bg-surface-container-low border-none rounded-full px-4 py-1.5 text-body-md focus:ring-2 focus:ring-primary/20 w-64" placeholder="Search analytics..." type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-1.5 text-text-secondary text-sm" data-icon="search">search</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined cursor-pointer text-text-secondary hover:text-primary transition-colors" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined cursor-pointer text-text-secondary hover:text-primary transition-colors" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="ml-64 p-margin-desktop space-y-8">
+<!-- Summary Cards Header -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Accuracy Card -->
+<div class="bg-surface p-card-padding-lg border border-border flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-24 h-24 bg-secondary/5 rounded-full -mr-12 -mt-12 group-hover:scale-110 transition-transform duration-500"></div>
+<div>
+<p class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wider mb-2">Model Accuracy</p>
+<div class="flex items-end gap-4">
+<div class="space-y-1">
+<span class="font-metric-lg text-metric-lg text-secondary block">94.2%</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">XGBoost</span>
+</div>
+<div class="h-8 w-px bg-border mx-2"></div>
+<div class="space-y-1">
+<span class="font-metric-lg text-metric-lg text-primary block">91.8%</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">Random Forest</span>
+</div>
+</div>
+</div>
+<div class="mt-4 flex items-center text-success gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span>
+<span class="font-body-md text-body-md font-semibold">+2.4% Margin</span>
+</div>
+</div>
+<!-- Training Speed Card -->
+<div class="bg-surface p-card-padding-lg border border-border shadow-sm">
+<p class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wider mb-4">Training Duration</p>
+<div class="space-y-4">
+<div class="space-y-1">
+<div class="flex justify-between text-body-md mb-1">
+<span class="font-semibold text-secondary">XGBoost (GPU)</span>
+<span>42s</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="progress-fill bg-secondary h-full" style="width: 35%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-body-md mb-1">
+<span class="font-semibold text-primary">Random Forest</span>
+<span>124s</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="progress-fill bg-primary h-full" style="width: 85%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Deployment Actions Card -->
+<div class="bg-surface p-card-padding-lg border border-border shadow-sm flex flex-col justify-center space-y-3">
+<button class="w-full bg-primary-container text-on-primary py-3 rounded-xl font-body-lg text-body-lg font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-all transform active:scale-95 shadow-lg shadow-primary/10">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+                    Deploy XGBoost
+                </button>
+<button class="w-full border border-border text-text-primary py-3 rounded-xl font-body-lg text-body-lg font-bold flex items-center justify-center gap-2 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined" data-icon="tune">tune</span>
+                    Hyperparameter Tuning
+                </button>
+</div>
+</section>
+<!-- Main Comparison Bento Grid -->
+<section class="grid grid-cols-12 gap-gutter">
+<!-- Large RMSE Comparison Bar Chart -->
+<div class="col-span-12 lg:col-span-8 bg-surface p-card-padding-lg border border-border shadow-sm min-h-[400px]">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h3 class="font-headline-md text-headline-md font-bold">RMSE Across Test Sets</h3>
+<p class="font-body-md text-body-md text-text-secondary">Root Mean Square Error Comparison (Lower is better)</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 bg-secondary rounded-full"></div>
+<span class="text-label-sm font-label-sm">XGBoost</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 bg-primary rounded-full"></div>
+<span class="text-label-sm font-label-sm">Random Forest</span>
+</div>
+</div>
+</div>
+<div class="relative h-64 flex items-end justify-between gap-8 px-4 border-b border-border">
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-10">
+<div class="w-full border-t border-text-primary"></div>
+<div class="w-full border-t border-text-primary"></div>
+<div class="w-full border-t border-text-primary"></div>
+<div class="w-full border-t border-text-primary"></div>
+</div>
+<!-- Bars -->
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="flex items-end gap-1 w-full h-full">
+<div class="chart-bar flex-1 bg-secondary rounded-t-sm" style="height: 60%"></div>
+<div class="chart-bar flex-1 bg-primary rounded-t-sm" style="height: 75%"></div>
+</div>
+<span class="font-label-sm text-label-sm text-text-secondary">Standard Set</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="flex items-end gap-1 w-full h-full">
+<div class="chart-bar flex-1 bg-secondary rounded-t-sm" style="height: 45%"></div>
+<div class="chart-bar flex-1 bg-primary rounded-t-sm" style="height: 55%"></div>
+</div>
+<span class="font-label-sm text-label-sm text-text-secondary">Q3 Dataset</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="flex items-end gap-1 w-full h-full">
+<div class="chart-bar flex-1 bg-secondary rounded-t-sm" style="height: 68%"></div>
+<div class="chart-bar flex-1 bg-primary rounded-t-sm" style="height: 82%"></div>
+</div>
+<span class="font-label-sm text-label-sm text-text-secondary">Edge Cases</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="flex items-end gap-1 w-full h-full">
+<div class="chart-bar flex-1 bg-secondary rounded-t-sm" style="height: 38%"></div>
+<div class="chart-bar flex-1 bg-primary rounded-t-sm" style="height: 48%"></div>
+</div>
+<span class="font-label-sm text-label-sm text-text-secondary">Cleaned v2</span>
+</div>
+</div>
+</div>
+<!-- Overfitting Risk Meter -->
+<div class="col-span-12 lg:col-span-4 bg-surface p-card-padding-lg border border-border shadow-sm flex flex-col">
+<h3 class="font-headline-md text-headline-md font-bold mb-2">Risk Assessment</h3>
+<p class="font-body-md text-body-md text-text-secondary mb-6">Generalization gap analysis</p>
+<div class="space-y-8 flex-1 flex flex-col justify-center">
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<span class="font-body-md font-bold text-secondary">XGBoost Risk</span>
+<span class="bg-success/10 text-success text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-tighter">Low</span>
+</div>
+<div class="relative h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="absolute left-0 h-full bg-success progress-fill" style="width: 24%"></div>
+</div>
+<p class="text-[11px] text-text-secondary italic">Regularization prevents complex branching.</p>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<span class="font-body-md font-bold text-primary">Random Forest Risk</span>
+<span class="bg-warning/10 text-warning text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-tighter">Medium</span>
+</div>
+<div class="relative h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="absolute left-0 h-full bg-warning progress-fill" style="width: 58%"></div>
+</div>
+<p class="text-[11px] text-text-secondary italic">High variance observed in deep-tree paths.</p>
+</div>
+</div>
+</div>
+<!-- Scalability & Tech Details -->
+<div class="col-span-12 bg-surface border border-border shadow-sm overflow-hidden">
+<div class="grid grid-cols-1 md:grid-cols-3 divide-x divide-border">
+<div class="p-card-padding-lg">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary" data-icon="hub">hub</span>
+<h4 class="font-body-lg text-body-lg font-bold">Scalability Score</h4>
+</div>
+<div class="flex items-center justify-center p-4">
+<div class="relative w-24 h-24 flex items-center justify-center border-4 border-secondary rounded-full">
+<span class="font-metric-lg text-metric-lg text-secondary">9.8</span>
+<div class="absolute -bottom-2 bg-surface px-2 text-[10px] font-bold text-text-secondary uppercase">XGBoost</div>
+</div>
+</div>
+</div>
+<div class="p-card-padding-lg bg-bg-base/50">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary" data-icon="memory">memory</span>
+<h4 class="font-body-lg text-body-lg font-bold">Memory Overhead</h4>
+</div>
+<table class="w-full text-body-md">
+<tbody><tr class="border-b border-border">
+<td class="py-2 text-text-secondary">Peak Usage</td>
+<td class="py-2 text-right font-semibold">1.2 GB</td>
+</tr>
+<tr class="border-b border-border">
+<td class="py-2 text-text-secondary">Batch Size</td>
+<td class="py-2 text-right font-semibold">512 ops/s</td>
+</tr>
+<tr>
+<td class="py-2 text-text-secondary">Parallelism</td>
+<td class="py-2 text-right font-semibold text-success">Highly Opt.</td>
+</tr>
+</tbody></table>
+</div>
+<div class="p-card-padding-lg">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary" data-icon="verified">verified</span>
+<h4 class="font-body-lg text-body-lg font-bold">Model Confidence</h4>
+</div>
+<div class="w-full h-24 bg-cover bg-center rounded-xl opacity-80 mb-3 grayscale hover:grayscale-0 transition-all duration-700" data-alt="A modern abstract visualization of data points and neural network pathways in a clean blue and teal digital environment. The lighting is bright and corporate with a focus on precision and high-tech aesthetics. Minimalist UI elements float in the background." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDT7vD7lxsxwl-mWXYuZCjVSSG13C7wFGZBU-QN1L4lS7MSE9BxXoJ3Qe6l6ZBOcYzOfl7ZrRC2zS9CxEJ_MFvWY_dSmqC-lI81mRhpwC8JxuhUnXkv_BLxRFSdjHvH0dZp7IwzorOm_Hb_QMF53-NkMs8ERuMYCOBWcqTIOl4iyL7UM0_nmS3pnSCr5tTWR3tT0gRk6uc3NvEt3HlBo3GSYN18L2Ws_za___TjUcRqFhEe0h3PMIpp_AU1xp95DFI4gUanMDhm2bk')"></div>
+<p class="font-body-md text-body-md text-text-secondary">Cross-validated across 15 independent data shards.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Detailed Feature Table -->
+<section class="bg-surface border border-border shadow-sm rounded-xl overflow-hidden">
+<div class="p-card-padding-lg border-b border-border flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md font-bold">Metric Matrix</h3>
+<div class="flex gap-2">
+<span class="bg-surface-container px-3 py-1 rounded-full text-label-sm font-label-sm">v2.4.1-Stable</span>
+</div>
+</div>
+<table class="w-full text-left font-body-md">
+<thead>
+<tr class="bg-surface-container-low text-text-secondary">
+<th class="px-6 py-4 font-bold uppercase tracking-wider text-[11px]">Feature</th>
+<th class="px-6 py-4 font-bold uppercase tracking-wider text-[11px] text-secondary">XGBoost (Champion)</th>
+<th class="px-6 py-4 font-bold uppercase tracking-wider text-[11px] text-primary">Random Forest (Challenger)</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-semibold">Missing Value Handling</td>
+<td class="px-6 py-4">Native / Sparse-aware</td>
+<td class="px-6 py-4 text-text-secondary">Requires Imputation</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-semibold">Training Locality</td>
+<td class="px-6 py-4">Global Opt.</td>
+<td class="px-6 py-4">Local Consensus</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-semibold">Inference Latency</td>
+<td class="px-6 py-4 font-bold text-success">0.02ms</td>
+<td class="px-6 py-4 text-text-secondary">0.14ms</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-semibold">Interpretability (SHAP)</td>
+<td class="px-6 py-4">High</td>
+<td class="px-6 py-4">Very High</td>
+</tr>
+</tbody>
+</table>
+</section>
+</main>
+<script>
+        // Simple interaction for bars
+        document.querySelectorAll('.chart-bar').forEach(bar => {
+            bar.addEventListener('mouseenter', () => {
+                bar.style.opacity = '0.8';
+                bar.classList.add('scale-x-105');
+            });
+            bar.addEventListener('mouseleave', () => {
+                bar.style.opacity = '1';
+                bar.classList.remove('scale-x-105');
+            });
+        });
+
+        // Simulating progressive load of data visualizations
+        window.addEventListener('load', () => {
+            console.log('Comparison engine initialized.');
+        });
+    </script>
+</body></html>

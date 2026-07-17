@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Listing Explorer | EstateAnalytics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tabular-nums {
+            font-variant-numeric: tabular-nums;
+        }
+        /* Custom scrollbar for data density */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E2E8F0;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #CBD5E1;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#b6c4ff",
+                        "surface": "#FFFFFF",
+                        "surface-dim": "#dad9e1",
+                        "tertiary": "#4b1c00",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#00164e",
+                        "text-primary": "#0F172A",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#341100",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#1a1b21",
+                        "tertiary-fixed": "#ffdbcb",
+                        "success": "#16A34A",
+                        "surface-tint": "#4059aa",
+                        "outline": "#757682",
+                        "primary-container": "#1e3a8a",
+                        "secondary-fixed": "#89f5e7",
+                        "on-primary-fixed-variant": "#264191",
+                        "text-secondary": "#64748B",
+                        "on-secondary-container": "#006f66",
+                        "border": "#E2E8F0",
+                        "surface-container": "#eeedf4",
+                        "surface-container-high": "#e9e7ef",
+                        "on-secondary-fixed": "#00201d",
+                        "on-error": "#ffffff",
+                        "background": "#faf8ff",
+                        "tertiary-fixed-dim": "#ffb691",
+                        "secondary": "#006a61",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#6bd8cb",
+                        "danger": "#DC2626",
+                        "on-primary": "#ffffff",
+                        "bg-base": "#F8FAFC",
+                        "primary": "#00236f",
+                        "inverse-on-surface": "#f1f0f7",
+                        "inverse-surface": "#2f3036",
+                        "surface-container-highest": "#e3e1e9",
+                        "warning": "#D97706",
+                        "on-primary-container": "#90a8ff",
+                        "on-surface-variant": "#444651",
+                        "surface-container-low": "#f4f3fa",
+                        "on-surface": "#1a1b21",
+                        "on-secondary-fixed-variant": "#005049",
+                        "primary-fixed": "#dce1ff",
+                        "outline-variant": "#c5c5d3",
+                        "on-tertiary-container": "#f39461",
+                        "surface-bright": "#faf8ff",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#86f2e4",
+                        "tertiary-container": "#6e2c00",
+                        "on-tertiary-fixed-variant": "#773205",
+                        "surface-variant": "#e3e1e9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "1rem",
+                        "gutter": "1rem",
+                        "card-padding-lg": "1.5rem",
+                        "margin-desktop": "1.5rem",
+                        "card-padding-sm": "1rem"
+                    },
+                    "fontFamily": {
+                        "body-md": ["inter"],
+                        "label-sm": ["inter"],
+                        "headline-md": ["inter"],
+                        "body-lg": ["inter"],
+                        "metric-sm": ["inter"],
+                        "metric-lg": ["inter"],
+                        "display": ["inter"],
+                        "headline-lg": ["inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "metric-sm": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "metric-lg": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "headline-lg": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-bg-base font-body-md text-text-primary selection:bg-primary-container selection:text-on-primary-container overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r border-border dark:border-outline-variant bg-surface dark:bg-surface-container-low flex flex-col py-6 px-4 z-50">
+<div class="mb-10 px-2">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">EstateAnalytics</h1>
+<p class="text-text-secondary text-label-sm uppercase tracking-wider mt-1">Enterprise Suite</p>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Market Overview -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-text-secondary hover:text-text-primary hover:bg-surface-container-low transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[22px]">dashboard</span>
+<span class="font-body-md">Market Overview</span>
+</a>
+<!-- Price Predictor -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-text-secondary hover:text-text-primary hover:bg-surface-container-low transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[22px]">query_stats</span>
+<span class="font-body-md">Price Predictor</span>
+</a>
+<!-- Listing Explorer (ACTIVE) -->
+<a class="flex items-center gap-3 px-3 py-2.5 text-primary dark:text-primary-fixed font-bold border-r-4 border-primary dark:border-primary-fixed bg-surface-container-low dark:bg-surface-container-high transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[22px]">list_alt</span>
+<span class="font-body-md">Listing Explorer</span>
+</a>
+<!-- Model Comparison -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-text-secondary hover:text-text-primary hover:bg-surface-container-low transition-colors duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[22px]">analytics</span>
+<span class="font-body-md">Model Comparison</span>
+</a>
+</nav>
+<div class="mt-auto space-y-1 border-t border-border pt-4">
+<button class="w-full bg-primary-container text-white py-2 px-4 rounded font-body-md mb-4 hover:opacity-90 transition-opacity">
+                Export Report
+            </button>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-text-secondary hover:text-text-primary hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-text-secondary hover:text-text-primary hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">help_outline</span>
+<span class="font-body-md">Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Shell -->
+<main class="ml-64 h-screen flex flex-col relative overflow-hidden">
+<!-- Top App Bar -->
+<header class="w-full h-16 sticky top-0 bg-base dark:bg-background flex items-center justify-between px-margin-desktop z-40">
+<div class="flex items-center gap-4">
+<h2 class="font-headline-lg text-headline-lg font-black text-primary dark:text-primary-fixed">Listing Explorer</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary group-focus-within:text-primary">search</span>
+<input class="bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 w-80 text-body-md focus:ring-2 focus:ring-primary-container transition-all" placeholder="Search by address, zip, or neighborhood..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="flex items-center gap-2 pl-4 border-l border-border">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-highest">
+<img class="w-full h-full object-cover" data-alt="A professional corporate headshot of a real estate analyst, clean lighting, blurred modern office background, sophisticated and neutral aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA28uFdWsY3JwascNN4Jf31w5Mp0myWxSx0yIH4wYr1ECyUuPC5oL_z09FJXhZp73pPvvKefECjaV8Zk0lf-KyiKtPDn3kL-CPiH36FoVu7KZhoRJW4VSkptrpWWwG4_mosZTmXm8T4Pn901__xNQl7XSAVX3c6J0MpHJUJgLsCIEVFNwxg9DWFZYt844CJep_380FNltqnTG1B4tdvOObVsE0lqhUAQOOsAPkwhM_5hCzOIGvOWOdKNxD4Er9lx5VHhMmOURFlg3E"/>
+</div>
+<span class="material-symbols-outlined text-text-secondary">account_circle</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Listing Content -->
+<div class="flex-1 overflow-y-auto p-margin-desktop space-y-6">
+<!-- Filters & Stats Row -->
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex flex-wrap items-center gap-3">
+<!-- Filter Chips -->
+<button class="px-4 py-1.5 bg-surface border border-primary text-primary rounded-full font-body-md flex items-center gap-2">
+                        Price Range: $500k - $1.2M
+                        <span class="material-symbols-outlined text-sm">close</span>
+</button>
+<button class="px-4 py-1.5 bg-surface border border-border text-text-primary rounded-full font-body-md hover:bg-surface-container-low flex items-center gap-2">
+                        Property Type
+                        <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<button class="px-4 py-1.5 bg-surface border border-border text-text-primary rounded-full font-body-md hover:bg-surface-container-low flex items-center gap-2">
+                        Sq Ft Range
+                        <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<button class="px-4 py-1.5 bg-surface border border-border text-text-primary rounded-full font-body-md hover:bg-surface-container-low flex items-center gap-2">
+                        Lot Size
+                        <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="h-6 w-px bg-border mx-1"></div>
+<button class="text-primary font-semibold text-body-md flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                        All Filters
+                    </button>
+</div>
+<div class="flex items-center gap-4 text-text-secondary font-body-md">
+<span><strong>1,284</strong> properties found</span>
+<div class="flex bg-surface-container-low rounded-lg p-1">
+<button class="p-1.5 rounded bg-surface shadow-sm text-primary">
+<span class="material-symbols-outlined text-[20px]">list</span>
+</button>
+<button class="p-1.5 rounded text-text-secondary hover:text-text-primary">
+<span class="material-symbols-outlined text-[20px]">grid_view</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Main Data Table Container -->
+<div class="bg-surface rounded-xl border border-border overflow-hidden flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-bg-base border-b border-border">
+<th class="px-6 py-4 font-semibold text-text-secondary text-label-sm uppercase tracking-wider">Address &amp; Location</th>
+<th class="px-6 py-4 font-semibold text-text-secondary text-label-sm uppercase tracking-wider">Price</th>
+<th class="px-6 py-4 font-semibold text-text-secondary text-label-sm uppercase tracking-wider">Sq Ft Price</th>
+<th class="px-6 py-4 font-semibold text-text-secondary text-label-sm uppercase tracking-wider">Market Value</th>
+<th class="px-6 py-4 font-semibold text-text-secondary text-label-sm uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 text-right"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded bg-surface-container-highest flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="High-resolution architectural photography of a modern luxury suburban house exterior, dusk lighting, warm windows, minimalist landscape, clean lines, professional real estate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhc74ahZ-6npIWQ7ySIdPiixJNTvxD93QAH4da3dnsgsbn3xf6Ot61hoUd9W0tN2qXGl0kjCGtIjwt83aBge41IT1Icitc9_HiIkQGZggEHiKskOsp-u-fgRnJIHtyLtzcZS3d0ablXJc_EzMD_f8c7o7Tn49pG72YiwQjeNxfCwIb8Le-I1yGTgbMeTgj4-1c4OdDLU5MErHZzjlqZg_gr1l3YI8_7Nb6_bEitfVuQmNmSp9jdyM6LLFCBd6ByGXbMBWLgaPetJk"/>
+</div>
+<div>
+<p class="font-semibold text-text-primary">742 Evergreen Terrace</p>
+<p class="text-text-secondary text-body-md">Springfield, IL 62704</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 tabular-nums font-medium">$842,500</td>
+<td class="px-6 py-4 tabular-nums text-text-secondary">$345/sqft</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 rounded-full text-label-sm font-bold bg-success/10 text-success flex items-center w-fit gap-1">
+<span class="material-symbols-outlined text-sm">trending_down</span>
+                                        Under Market (4.2%)
+                                    </span>
+</td>
+<td class="px-6 py-4">
+<span class="text-body-md text-text-primary px-2 py-1 bg-surface-container rounded border border-border">Active</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 text-text-secondary hover:text-primary transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded bg-surface-container-highest flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Contemporary loft apartment interior view from the street, industrial windows, brick accents, evening soft lighting, urban high-end development, professional architectural shot." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7gQYciHZhPSwae2fhjPxt1se9sNVBvsufTLU9YhtcaYd_RWkLE6RhXtgn7o-O8gSDbisrLhR-XOxg0Vme_5HJlqd0m3Qmhk-MpoLxCp9gRaI2Xtulh4hqt5-uoFPpaY6mnJtI39woYK4N-dasywuBZtN2CCxSQa9AKGhiLSYERV1iUURGYh2RTvhKKtRQg_Y3zYdOpyAAuZEAhtT-fJ71f7WL2Zmzwq9umh_dMoyyN7Di9MXqo01LNCe3f6a3-gntSyaJ7nWnI1U"/>
+</div>
+<div>
+<p class="font-semibold text-text-primary">1200 Avenue of the Stars</p>
+<p class="text-text-secondary text-body-md">Century City, CA 90067</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 tabular-nums font-medium">$1,450,000</td>
+<td class="px-6 py-4 tabular-nums text-text-secondary">$890/sqft</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 rounded-full text-label-sm font-bold bg-danger/10 text-danger flex items-center w-fit gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                                        Over Market (8.5%)
+                                    </span>
+</td>
+<td class="px-6 py-4">
+<span class="text-body-md text-text-primary px-2 py-1 bg-surface-container rounded border border-border">Pending</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 text-text-secondary hover:text-primary transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded bg-surface-container-highest flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Elegant victorian style residential property, renovated with modern white finish, manicured lawn, bright daylight, blue sky, high-quality real estate photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBusy4XJ51VwZhUK4Xz16VHgeCNzDte8ih4fqE3Tpwd9DbUSUNaTbdF9X0LHHrWdLmK6XWiFbEald6Ri1wZpLSV14HOHzYIvea5jOcHP0QULoe6zEix5NJvOyEvIbvBzseydJtRHgbKVPVLWdBZXHlrUIC4HppA2vifz0dYtfcPmH0NV1Jot1X2xhZMXXUcE15oSIr-6um4ugCkqLU7__C2DdeupO-DLAnCZgSmOZzl7p8KR3siGYgzpvEqXplMYPW2WTTo_wJRniE"/>
+</div>
+<div>
+<p class="font-semibold text-text-primary">45 Oak Ridge Drive</p>
+<p class="text-text-secondary text-body-md">Greenwich, CT 06830</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 tabular-nums font-medium">$925,000</td>
+<td class="px-6 py-4 tabular-nums text-text-secondary">$410/sqft</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 rounded-full text-label-sm font-bold bg-secondary-container/30 text-on-secondary-container flex items-center w-fit gap-1">
+<span class="material-symbols-outlined text-sm">unfold_more</span>
+                                        Fair Market Value
+                                    </span>
+</td>
+<td class="px-6 py-4">
+<span class="text-body-md text-text-primary px-2 py-1 bg-surface-container rounded border border-border">Active</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 text-text-secondary hover:text-primary transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded bg-surface-container-highest flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Minimalist glass-walled forest cabin, luxury architecture, sustainable materials, soft sunrise lighting, moody atmosphere, elite design aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3nJ-RXuf-heOYEvxaOB5ZtXJgMs9QEXu5UBe66GIJ2Hv0AyuOtigCgEJbRrfm_VESlY_SCvDhURKgHOxknHBX6ORw6zhnGi0DR3toi5aQ2k-5zJr7qI4ZmvGoYPVNGV_T35GS_-3UoAaiqjJ4m5gzWm7UvPaNBnIOk6CI01_hfibAmzwqdEtkxjcU50GmwUNZEGSiO7LUkfZf0L5kEBA80viQG3rKx6By9oNYpe8ofdX1eOUoqSXSSmTDP7NOgcGLKWrrjKyvRNE"/>
+</div>
+<div>
+<p class="font-semibold text-text-primary">902 Deep Forest Way</p>
+<p class="text-text-secondary text-body-md">Boulder, CO 80302</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 tabular-nums font-medium">$1,120,000</td>
+<td class="px-6 py-4 tabular-nums text-text-secondary">$520/sqft</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 rounded-full text-label-sm font-bold bg-success/10 text-success flex items-center w-fit gap-1">
+<span class="material-symbols-outlined text-sm">trending_down</span>
+                                        Under Market (2.1%)
+                                    </span>
+</td>
+<td class="px-6 py-4">
+<span class="text-body-md text-text-primary px-2 py-1 bg-surface-container rounded border border-border">Active</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 text-text-secondary hover:text-primary transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer -->
+<div class="p-4 bg-bg-base border-t border-border flex items-center justify-between">
+<p class="text-text-secondary text-body-md">Showing 1-10 of 1,284 properties</p>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1 border border-border rounded text-text-secondary hover:bg-surface transition-colors cursor-not-allowed" disabled="">Previous</button>
+<button class="px-3 py-1 bg-primary text-white rounded hover:opacity-90 transition-opacity">1</button>
+<button class="px-3 py-1 border border-border rounded hover:bg-surface transition-colors">2</button>
+<button class="px-3 py-1 border border-border rounded hover:bg-surface transition-colors">3</button>
+<span class="text-text-secondary">...</span>
+<button class="px-3 py-1 border border-border rounded hover:bg-surface transition-colors">129</button>
+<button class="px-3 py-1 border border-border rounded text-text-primary hover:bg-surface transition-colors">Next</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Action Button for Map -->
+<div class="fixed bottom-8 right-8 z-50 flex flex-col items-end gap-4">
+<!-- Sidebar/Map Toggle Status (Optional tooltip feel) -->
+<div class="bg-primary-container text-white px-4 py-2 rounded-xl text-label-sm font-bold shadow-xl translate-y-4 opacity-0 transition-all pointer-events-none" id="map-label">
+                VIEW PROPERTY MAP
+            </div>
+<button class="w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all group" id="map-fab" onmouseenter="document.getElementById('map-label').classList.remove('opacity-0', 'translate-y-4')" onmouseleave="document.getElementById('map-label').classList.add('opacity-0', 'translate-y-4')">
+<span class="material-symbols-outlined text-[28px] group-hover:hidden">map</span>
+<span class="material-symbols-outlined text-[28px] hidden group-hover:block">layers</span>
+</button>
+</div>
+<!-- Map Sidebar (Hidden by default) -->
+<div class="fixed right-0 top-0 h-full w-[450px] bg-surface border-l border-border shadow-2xl translate-x-full transition-transform duration-500 ease-in-out z-[60]" id="map-sidebar">
+<div class="p-6 h-full flex flex-col">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-md text-primary">Interactive Map</h3>
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors" onclick="toggleMap()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex-1 bg-surface-container rounded-xl overflow-hidden relative">
+<!-- Map Placeholder -->
+<div class="absolute inset-0 bg-[#E2E8F0]" data-location="Springfield, Illinois" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAHDonuybsVSglEsB-A6a9-WKir15xLF2N5cZOz8-hW6sKrAqI-R_YThiTVHa6hCrzDcqvl-yFvH9XWhUoF8HE-sS-qmhIXYmpbXLWMTylNXeZZOhSRZrKrbXOXv90wHMzvhhC0LgPUOfIQJ_K39fDbYufZkNWEYWryJaR2P_oCVgdsw1s8ujZcSNqyaPi1pNepkqbpZ0aFrQHS4UjDLHxqxFOhgdngJsRMeux-iXu179v1bcqyEdMmPjyhXN0EmdOjJtBE4tJCEBo')"></div>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full border border-primary text-primary font-bold shadow-lg">
+                            Loading Satellite Data...
+                        </div>
+</div>
+</div>
+<div class="mt-6 space-y-4">
+<div class="flex items-center justify-between p-3 bg-bg-base rounded-lg">
+<span class="text-text-secondary">Selected Filter:</span>
+<span class="font-bold text-primary">All Zones</span>
+</div>
+<button class="w-full py-3 bg-primary text-white rounded-lg font-bold hover:opacity-90 transition-opacity">
+                        Analyze This Area
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<script>
+        const mapFab = document.getElementById('map-fab');
+        const mapSidebar = document.getElementById('map-sidebar');
+        let mapOpen = false;
+
+        function toggleMap() {
+            mapOpen = !mapOpen;
+            if (mapOpen) {
+                mapSidebar.classList.remove('translate-x-full');
+                mapFab.classList.add('rotate-45');
+            } else {
+                mapSidebar.classList.add('translate-x-full');
+                mapFab.classList.remove('rotate-45');
+            }
+        }
+
+        mapFab.addEventListener('click', toggleMap);
+
+        // Simple table row interaction
+        const rows = document.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+            row.addEventListener('click', () => {
+                // Flash interaction
+                row.classList.add('bg-primary/5');
+                setTimeout(() => row.classList.remove('bg-primary/5'), 300);
+            });
+        });
+    </script>
+</body></html>
