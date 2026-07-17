@@ -12,7 +12,7 @@
 ---
 
 ## Current Phase
-Phase 8 — React Dashboard
+Phase 9 — Testing Pass
 
 ## Completed
 - Phase 1 — Project Setup (FastAPI scaffolding, config loader, structured logs, tests, Vite React + TS + Tailwind v3 scaffold, folder structure)
@@ -22,13 +22,15 @@ Phase 8 — React Dashboard
 - Phase 5 — FastAPI Backend (schemas, routers for predict/similar/trends/metrics, CORS middleware, integration unit tests)
 - Phase 6 — CLI Completion (`cli predict` single inference tool, `cli serve` uvicorn wrapper, `CliRunner` unit tests, and manual verification)
 - Phase 7 — Scheduler (BackgroundScheduler, versioned metrics.json grouping, model training loop exception resilience, and unit tests)
+- Phase 8 — React Dashboard (Axios API wrappers, TanStack Query hooks, state navigation routing, 5 clean bento bento-style pages, Zod form validation, and unique model color constants)
 
 ## In Progress
-- Phase 8 — React Dashboard (scaffolding components, views for overview, predictor, comparables, comparison, listing details)
+- Phase 9 — Testing Pass (running manual/automated testing of the full stack and making final verification updates)
 
 ## Next Steps
-- Implement Phase 8 React Dashboard
-- Implement Phase 9 Testing Pass
+- Verify integration between frontend dashboard and FastAPI backend
+- Final verification pass
+
 
 
 
@@ -125,8 +127,16 @@ Phase 8 — React Dashboard
   - Gated the background scheduler thread behind the environment config `SCHEDULER_ENABLED` (default `false`) to avoid silent background execution during React dashboard development.
   - Implemented training loop error resiliency inside `ModelTrainer.train_all()` so that individual model fit/evaluation failures are caught and logged, rather than aborting the pipeline.
   - Created unit and integration tests in `tests/core/test_scheduler.py` verifying get_next_feature_version logic, trainer loop resiliency, and scraper network fallback (4/4 passing scheduler tests).
+  - Implemented Phase 8 React Dashboard, translating manually exported Stitch layout visual assets into modular TypeScript functional components.
+  - Resolved conflicts between Stitch template parameters and backend models by dropping non-existent model features (`lot_size`, `address`, `bathrooms`) and mapping inputs exactly to `PredictRequest`.
+  - Configured `@hookform/resolvers/zod` with robust Zod validation schemas matching backend boundaries on the price predictor form.
+  - Set up a shared color constants file `constants.ts` mapping each of the 10 models to a strict, unique, non-status visual color token to prevent collision with semantic status colors (Success green, Warning amber, Danger red).
+  - Wired Axios API wrappers and custom TanStack Query hooks, branching HTTP error codes specifically to validation alerts (400), empty states (404), and generic user-friendly cards (500) to hide stack traces.
+  - Implemented state-based tab routing in `App.tsx` keeping layout simple and avoiding extra dependencies like `react-router-dom`.
+  - Verified compilation soundness via production build (`npm run build`), compiling successfully with zero warnings or errors.
 - What's left for next session:
-  - Proceed with Phase 8 (React Dashboard).
+  - Proceed with Phase 9 (Testing Pass) and final integration checks.
+
 
 
 

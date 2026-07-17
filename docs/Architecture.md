@@ -73,7 +73,7 @@ frontend/
 | Task | Models |
 |---|---|
 | Price estimate (regression) | Linear, Ridge, Lasso, Random Forest, XGBoost |
-| Will-sell-in-30-days (binary classification) | Logistic Regression |
+| Under-market value (binary classification) | Logistic Regression |
 | Price-tier classification | SVM |
 | Explainable price factors | Decision Tree |
 | Description text classification | Naive Bayes |

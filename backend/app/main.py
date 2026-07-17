@@ -35,11 +35,14 @@ from app.api.predict import router as predict_router
 from app.api.similar import router as similar_router
 from app.api.trends import router as trends_router
 from app.api.metrics import router as metrics_router
+from app.api.listings import router as listings_router
 
 app.include_router(predict_router, prefix="/api/predict", tags=["Prediction"])
 app.include_router(similar_router, prefix="/api/similar-properties", tags=["Comparables"])
 app.include_router(trends_router, prefix="/api/market-trend", tags=["Market Trends"])
 app.include_router(metrics_router, prefix="/api/model-metrics", tags=["Model Comparison"])
+app.include_router(listings_router, prefix="/api/listings", tags=["Listings"])
+
 
 
 @app.get("/health", tags=["Health"])
