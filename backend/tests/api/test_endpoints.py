@@ -200,3 +200,28 @@ def test_listings_endpoint_error_handling() -> None:
         assert "traceback" not in response.text
 
 
+def test_listings_endpoint_validation_errors() -> None:
+    """
+    Verify GET /api/listings/ returns 400 or 422 on invalid parameters.
+    """
+    # 1. 400 cases (logical validation failures)
+    resp1 = client.get("/api/listings/?min_price=200000&max_price=100000")
+    assert resp1.status_code == 400
+    assert "min_price" in resp1.json()["detail"]
+
+    resp2 = client.get("/api/listings/?min_area=2000&max_area=1500")
+    assert resp2.status_code == 400
+    assert "min_area" in resp2.json()["detail"]
+
+    # 2. 422 cases (Query parameter type boundaries)
+    resp3 = client.get("/api/listings/?page=-1")
+    assert resp3.status_code == 422
+
+    resp4 = client.get("/api/listings/?limit=500")
+    assert resp4.status_code == 422
+
+    resp5 = client.get("/api/listings/?is_below_market_value=3")
+    assert resp5.status_code == 422
+
+
+

@@ -32,6 +32,16 @@ def get_listings(
     """
     Retrieve and filter featured listings for the Listing Explorer dashboard view.
     """
+    # Logical validation checks
+    if min_price is not None and max_price is not None and min_price > max_price:
+        raise HTTPException(
+            status_code=400, detail="min_price cannot be greater than max_price."
+        )
+    if min_area is not None and max_area is not None and min_area > max_area:
+        raise HTTPException(
+            status_code=400, detail="min_area cannot be greater than max_area."
+        )
+
     try:
         # 1. Determine active version if "latest" requested
         if version == "latest":
