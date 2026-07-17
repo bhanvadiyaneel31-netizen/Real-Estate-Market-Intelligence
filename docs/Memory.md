@@ -53,6 +53,9 @@ Phase 8 — React Dashboard
 | 2026-07-17 | Gated Background Scheduler Thread | Added `scheduler_enabled: bool = False` configuration setting to FastAPI config. The scheduler only boots if `SCHEDULER_ENABLED=true` is set in the environment, preventing unwanted background retrains during React dashboard local development. |
 | 2026-07-17 | Versioned Metrics history in metrics.json | Grouped metrics inside `metrics.json` nested under `feature_set_version` (e.g. `"1.0.0"`, `"1.0.1"`) to prevent overwriting history, allowing model comparison across runs while overwriting production `.joblib` files to auto-serve latest models. |
 | 2026-07-17 | Relative targets recomputed per run | The classification targets `is_below_market_value` and `price_tier` are relative targets (calculated from median split and tertile thresholds of the active training set). When training on a new version, these boundaries shift. Metrics comparisons across versions represent performance on that version's definition, not absolute drift. |
+| 2026-07-17 | Translating Stitch exports for dashboard | Used `docs/stitch-export/` as visual and layout source for Phase 8 pages. Dropped `lot_size` (acres), `address` (full street), and `bathrooms` input fields because they are not present in our backend ML feature set, ensuring the form maps to the model inputs exactly. |
+
+
 
 
 ## Known Issues / Blockers
