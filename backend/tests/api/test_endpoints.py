@@ -172,3 +172,31 @@ def test_predict_endpoint_missing_model_error() -> None:
         assert "detail" in data
         assert "traceback" not in response.text
 
+
+def test_listings_endpoint_success() -> None:
+    """
+    Verify GET /api/listings/ returns a structured payload with listings list and pagination.
+    """
+    response = client.get("/api/listings/?limit=10&page=1")
+    assert response.status_code == 200
+    data = response.json()
+    assert "total" in data
+    assert "listings" in data
+    assert "page" in data
+    assert "limit" in data
+    assert isinstance(data["listings"], list)
+
+
+def test_listings_endpoint_error_handling() -> None:
+    """
+    Verify GET /api/listings/ returns 500 error on database exceptions and hides tracebacks.
+    """
+    from unittest import mock
+    with mock.patch("sqlalchemy.orm.Query.count", side_effect=Exception("Database crash mock")):
+        response = client.get("/api/listings/")
+        assert response.status_code == 500
+        data = response.json()
+        assert "detail" in data
+        assert "traceback" not in response.text
+
+

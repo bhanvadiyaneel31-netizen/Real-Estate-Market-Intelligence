@@ -4,7 +4,7 @@ FastAPI router containing endpoints for querying and filtering cleaned listings.
 
 import logging
 from typing import Any, Dict, List, Optional
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, Query, HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 
@@ -92,11 +92,6 @@ def get_listings(
 
     except Exception as e:
         logger.error(f"Error querying listings in get_listings router: {e}")
-        return {
-            "total": 0,
-            "page": page,
-            "limit": limit,
-            "feature_set_version": version,
-            "listings": [],
-            "error": str(e),
-        }
+        raise HTTPException(
+            status_code=500, detail="Unexpected listings retrieval error."
+        )
