@@ -12,7 +12,7 @@
 ---
 
 ## Current Phase
-Phase 10 — Deployment
+Completed / Final Review
 
 ## Completed
 - Phase 1 — Project Setup (FastAPI scaffolding, config loader, structured logs, tests, Vite React + TS + Tailwind v3 scaffold, folder structure)
@@ -24,13 +24,15 @@ Phase 10 — Deployment
 - Phase 7 — Scheduler (BackgroundScheduler, versioned metrics.json grouping, model training loop exception resilience, and unit tests)
 - Phase 8 — React Dashboard (Axios API wrappers, TanStack Query hooks, state navigation routing, 5 clean bento bento-style pages, Zod form validation, and unique model color constants)
 - Phase 9 — Testing Pass (complete Pytest coverage for all 34 backend scraper/ETL/ML/API modules and 24 Vitest smoke tests for all React pages/hooks covering loading, success, empty, and error-branching states)
+- Phase 10 — Skipped (deployment not required for this submission)
+- Phase 11 — Polish / Portfolio Packaging (created project-root README, Mermaid architecture graphs, 10-model registry metrics table, local serving instructions, top-level cli.py entrypoint, and demo warnings on Price Predictor form)
 
 ## In Progress
-- Phase 10 — Deployment (preparing backend Dockerfile, frontend hosting, and scheduler verification in staging)
+- None (All development phases completed)
 
 ## Next Steps
-- Implement Phase 10 Deployment
-- Implement Phase 11 Polish / Portfolio Packaging
+- None
+
 
 
 
@@ -62,6 +64,8 @@ Phase 10 — Deployment
 | 2026-07-17 | Addition of `/api/listings/` endpoint | Added a new endpoint `/api/listings/` supporting pagination and filtering on `FeaturedListing`. This is an intentional extension of the PRD/Architecture API contract to allow the frontend's Listing Explorer component to query and display properties from the database. |
 | 2026-07-18 | Added frontend testing stack (Vitest + RTL) | Installed Vitest, jsdom, and React Testing Library to write smoke tests for key components and pages, ensuring visual and rendering regressions are caught automatically. |
 | 2026-07-18 | Added top-level `backend/cli.py` script | Added a clean top-level runner `cli.py` to backend root to launch Click commands. This bypasses Python module resolution warnings (`RuntimeWarning: 'app.cli.commands' found in sys.modules...`) when executing the app/cli/ folder directly. |
+| 2026-07-18 | Skipped Phase 10 (Deployment) | Skipped deployment phase in favor of local-only verification and portfolio packaging, satisfying the college internship submission scope without unnecessary remote cloud hosting setup. |
+
 
 
 
