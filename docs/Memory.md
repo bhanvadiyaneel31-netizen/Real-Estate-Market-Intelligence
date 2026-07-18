@@ -12,7 +12,7 @@
 ---
 
 ## Current Phase
-Completed / Staging Handoff
+Phase 10 — Deployment
 
 ## Completed
 - Phase 1 — Project Setup (FastAPI scaffolding, config loader, structured logs, tests, Vite React + TS + Tailwind v3 scaffold, folder structure)
@@ -26,10 +26,12 @@ Completed / Staging Handoff
 - Phase 9 — Testing Pass (complete Pytest coverage for all 34 backend scraper/ETL/ML/API modules and 24 Vitest smoke tests for all React pages/hooks covering loading, success, empty, and error-branching states)
 
 ## In Progress
-- None (All development phases completed)
+- Phase 10 — Deployment (preparing backend Dockerfile, frontend hosting, and scheduler verification in staging)
 
 ## Next Steps
-- Production deployment and final handoff
+- Implement Phase 10 Deployment
+- Implement Phase 11 Polish / Portfolio Packaging
+
 
 
 

@@ -21,7 +21,7 @@ Scraper → Raw Store (DB) → Cleaner/ETL → Feature Store (DB) → Model Trai
 | CLI | `click` | `scrape`, `clean`, `train`, `predict`, `serve` commands |
 | Scheduler | APScheduler | Runs scrape + retrain jobs |
 | Backend Testing | `pytest` | Unit tests per module |
-| Frontend Testing | `vitest` + `@testing-library/react` + `jsdom` | Smoke tests for all components and error-branching hooks |
+| Frontend Testing | `vitest` + `@testing-library/react` + `@testing-library/jest-dom` + `jsdom` | Smoke tests for all components and error-branching hooks |
 | Frontend | React + TypeScript | See below |
 | Frontend data layer | TanStack Query (React Query) | Caching, loading/error states |
 | Frontend charts | Recharts | Market trend + model comparison charts |
