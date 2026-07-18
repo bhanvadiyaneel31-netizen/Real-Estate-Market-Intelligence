@@ -61,6 +61,8 @@ Phase 10 — Deployment
 | 2026-07-17 | Translating Stitch exports for dashboard | Used `docs/stitch-export/` as visual and layout source for Phase 8 pages. Dropped `lot_size` (acres), `address` (full street), and `bathrooms` input fields because they are not present in our backend ML feature set, ensuring the form maps to the model inputs exactly. |
 | 2026-07-17 | Addition of `/api/listings/` endpoint | Added a new endpoint `/api/listings/` supporting pagination and filtering on `FeaturedListing`. This is an intentional extension of the PRD/Architecture API contract to allow the frontend's Listing Explorer component to query and display properties from the database. |
 | 2026-07-18 | Added frontend testing stack (Vitest + RTL) | Installed Vitest, jsdom, and React Testing Library to write smoke tests for key components and pages, ensuring visual and rendering regressions are caught automatically. |
+| 2026-07-18 | Added top-level `backend/cli.py` script | Added a clean top-level runner `cli.py` to backend root to launch Click commands. This bypasses Python module resolution warnings (`RuntimeWarning: 'app.cli.commands' found in sys.modules...`) when executing the app/cli/ folder directly. |
+
 
 
 

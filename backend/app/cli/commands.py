@@ -186,4 +186,9 @@ def serve(host: str, port: int, reload: bool) -> None:
     uvicorn.run("app.main:app", host=host, port=port, reload=reload)
 
 
+if __name__ == "__main__":
+    cli()
+
+
+
 

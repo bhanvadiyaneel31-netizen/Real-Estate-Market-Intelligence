@@ -67,6 +67,10 @@ export const Predictor: React.FC<PredictorProps> = ({ onFindSimilar }) => {
               <div className="mb-6">
                 <h3 className="text-lg font-bold text-text-primary">Property Valuation Specifications</h3>
                 <p className="text-xs text-text-secondary">Provide the physical specs of the home to estimate its value via XGBoost.</p>
+                <div className="text-[10px] text-text-secondary mt-2 bg-slate-50 border border-border rounded p-2 flex items-start gap-1.5 leading-normal">
+                  <span className="material-symbols-outlined text-xs text-text-secondary mt-0.5">info</span>
+                  <span><strong>Demo Disclaimer:</strong> This model is trained on the historical Ames, Iowa housing dataset for demonstration purposes. Predictions do not reflect current real-world or local market prices.</span>
+                </div>
               </div>
 
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
