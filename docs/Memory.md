@@ -12,7 +12,7 @@
 ---
 
 ## Current Phase
-Phase 9 — Testing Pass
+Completed / Staging Handoff
 
 ## Completed
 - Phase 1 — Project Setup (FastAPI scaffolding, config loader, structured logs, tests, Vite React + TS + Tailwind v3 scaffold, folder structure)
@@ -23,13 +23,14 @@ Phase 9 — Testing Pass
 - Phase 6 — CLI Completion (`cli predict` single inference tool, `cli serve` uvicorn wrapper, `CliRunner` unit tests, and manual verification)
 - Phase 7 — Scheduler (BackgroundScheduler, versioned metrics.json grouping, model training loop exception resilience, and unit tests)
 - Phase 8 — React Dashboard (Axios API wrappers, TanStack Query hooks, state navigation routing, 5 clean bento bento-style pages, Zod form validation, and unique model color constants)
+- Phase 9 — Testing Pass (complete Pytest coverage for all 34 backend scraper/ETL/ML/API modules and 24 Vitest smoke tests for all React pages/hooks covering loading, success, empty, and error-branching states)
 
 ## In Progress
-- Phase 9 — Testing Pass (running manual/automated testing of the full stack and making final verification updates)
+- None (All development phases completed)
 
 ## Next Steps
-- Verify integration between frontend dashboard and FastAPI backend
-- Final verification pass
+- Production deployment and final handoff
+
 
 
 
@@ -57,6 +58,8 @@ Phase 9 — Testing Pass
 | 2026-07-17 | Relative targets recomputed per run | The classification targets `is_below_market_value` and `price_tier` are relative targets (calculated from median split and tertile thresholds of the active training set). When training on a new version, these boundaries shift. Metrics comparisons across versions represent performance on that version's definition, not absolute drift. |
 | 2026-07-17 | Translating Stitch exports for dashboard | Used `docs/stitch-export/` as visual and layout source for Phase 8 pages. Dropped `lot_size` (acres), `address` (full street), and `bathrooms` input fields because they are not present in our backend ML feature set, ensuring the form maps to the model inputs exactly. |
 | 2026-07-17 | Addition of `/api/listings/` endpoint | Added a new endpoint `/api/listings/` supporting pagination and filtering on `FeaturedListing`. This is an intentional extension of the PRD/Architecture API contract to allow the frontend's Listing Explorer component to query and display properties from the database. |
+| 2026-07-18 | Added frontend testing stack (Vitest + RTL) | Installed Vitest, jsdom, and React Testing Library to write smoke tests for key components and pages, ensuring visual and rendering regressions are caught automatically. |
+
 
 
 
@@ -138,7 +141,22 @@ Phase 9 — Testing Pass
   - Implemented state-based tab routing in `App.tsx` keeping layout simple and avoiding extra dependencies like `react-router-dom`.
   - Verified compilation soundness via production build (`npm run build`), compiling successfully with zero warnings or errors.
 - What's left for next session:
-  - Proceed with Phase 9 (Testing Pass) and final integration checks.
+  - Complete Phase 9 (Testing Pass) and setup testing environments.
+
+
+### Session 5 — 2026-07-18
+- What was done:
+  - Formulated and executed the implementation plan for Phase 9 (Testing Pass) with complete frontend and backend test verification.
+  - Installed frontend test packages (`vitest`, `jsdom`, `@testing-library/react`, `@testing-library/jest-dom`) to configure the React testing environment.
+  - Created `frontend/vitest.config.ts` and `frontend/src/tests/setup.ts` to configure Vitest, including a custom mock for the Recharts responsive container.
+  - Wrote 24 frontend unit and smoke tests in `frontend/src/tests/` covering rendering, loading states, success states, and error handling for all five main pages (`Overview`, `Predictor`, `Comparables`, `Explorer`, `ModelComparison`) and layout items (`Sidebar`, `Header`).
+  - Added a dedicated test in `useRealEstate.test.ts` to verify the axios request hook error-branching logic (correctly mapping 400/422 to validation alerts, 404 to empty states, and 500 to generic server error cards).
+  - Added logical validation checks (min/max price and area conflicts) to `/api/listings/` returning `400` status codes, and covered them with new tests in `test_endpoints.py`.
+  - Confirmed all 34 backend unit and integration tests (`pytest`) and all 24 frontend tests (`vitest`) pass successfully.
+  - Updated `Architecture.md` Tech Stack table to document the Vitest + RTL frontend testing libraries.
+- What's left for next session:
+  - Production deployment and handoff.
+
 
 
 
