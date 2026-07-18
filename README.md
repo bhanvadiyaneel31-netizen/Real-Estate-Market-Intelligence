@@ -94,19 +94,11 @@ flowchart TD
 
 ## 5. Dashboard Views & Screenshots
 
-Carousels of the implemented React pages (stored inside `docs/images/`):
-
-````carousel
 ![Market Overview](docs/images/market_overview.png)
-<!-- slide -->
 ![Price Predictor](docs/images/price_predictor.png)
-<!-- slide -->
 ![Similar Properties](docs/images/similar_properties.png)
-<!-- slide -->
 ![Listing Explorer](docs/images/listing_explorer.png)
-<!-- slide -->
 ![Model Comparison](docs/images/model_comparison.png)
-````
 
 ---
 
@@ -121,7 +113,7 @@ The following metrics are extracted directly from the registry's [metrics.json](
 | **Linear Regression** | Price Estimation | **RMSE: $35,522.00** | **R²: 0.7849** | Evaluated baseline |
 | **Lasso Regression** | Price Estimation | **RMSE: $35,526.13** | **R²: 0.7849** | Evaluated baseline |
 | **Ridge Regression** | Price Estimation | **RMSE: $35,609.38** | **R²: 0.7839** | Evaluated baseline |
-| **Decision Tree Regressor** | Explainability | **RMSE: $46,436.11** | **R²: 0.6324** | Surrogate surrogate feature path explainer |
+| **Decision Tree Regressor** | Explainability | **RMSE: $46,436.11** | **R²: 0.6324** | Surrogate feature path explainer |
 | **Logistic Regression** | Below-Market Classifier | **Accuracy: 74.87%** | **F1: 75.46%** | Deals identification (excluding raw price) |
 | **SVM Classifier** | Price Tier Classifier | **Accuracy: 75.21%** | **F1-Weighted: 75.12%** | Tertiles grouping (excluding raw price) |
 | **Naive Bayes Classifier** | Description Text Classifier | **Accuracy: 61.20%** | **F1: 58.95%** | Synthetic text baseline |
